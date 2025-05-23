@@ -1,0 +1,104 @@
+type: collection.insomnia.rest/5.0
+name: NodeJS Clean Arch
+meta:
+  id: wrk_8c5025741dd746a9a069e7633e93db28
+  created: 1747960687100
+  modified: 1747960687100
+collection:
+  - name: auth
+    meta:
+      id: fld_34caab791436444ab53ca5ea10f3a3bf
+      created: 1747960740575
+      modified: 1747960740575
+      sortKey: -1747960740575
+    children:
+      - url: "{{ _.baseURL }}/auth/login"
+        name: login
+        meta:
+          id: req_1b9efc093c514cd0ba922e71343307db
+          created: 1747960743608
+          modified: 1747964058114
+          isPrivate: false
+          sortKey: -1747960743608
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username": "testing@gmail.com",
+            	"password": "123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: users
+    meta:
+      id: fld_4e2b2ad4d9944a2eae2078cfb1567d32
+      created: 1747963031391
+      modified: 1747963031391
+      sortKey: -1747963031391
+    children:
+      - url: "{{ _.baseURL }}/users"
+        name: create user
+        meta:
+          id: req_0d55218b31c741f08e68f2d51134b7fd
+          created: 1747963034935
+          modified: 1747964123804
+          isPrivate: false
+          sortKey: -1747963034935
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username": "test",
+            	"email": "asdasd@gmail.com",
+            	"password": "123"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/11.1.0
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_929a32d9a4dd240bc806aa7b33d7c57cb11d9943
+    created: 1747960687102
+    modified: 1747960687102
+environments:
+  name: Base Environment
+  meta:
+    id: env_929a32d9a4dd240bc806aa7b33d7c57cb11d9943
+    created: 1747960687101
+    modified: 1747960687101
+    isPrivate: false
+  subEnvironments:
+    - name: local
+      meta:
+        id: env_4f74a88053fd461abc64bf34858440bf
+        created: 1747960696842
+        modified: 1747960725655
+        isPrivate: false
+        sortKey: 1747960696842
+      data:
+        baseURL: http://localhost:8080
+      color: "#75e506"
