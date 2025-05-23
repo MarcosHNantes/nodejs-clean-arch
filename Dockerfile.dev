@@ -1,0 +1,18 @@
+FROM node:23-alpine
+
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+ENV npm_config_generate_lockfile=false
+
+RUN apk update && apk add git
+
+RUN corepack enable
+
+WORKDIR /app
+
+COPY package.json pnpm-lock.yaml* ./
+
+RUN corepack prepare pnpm@latest --activate
+RUN pnpm install
+
+CMD ["pnpm", "dev"]

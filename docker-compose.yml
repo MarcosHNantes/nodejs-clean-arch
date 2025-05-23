@@ -1,0 +1,45 @@
+services:
+    app:
+        container_name: server
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        restart: unless-stopped
+        ports:
+            - ${APPLICATION_PORT}:${APPLICATION_PORT}
+        volumes:
+            - .:/app
+            - /app/node_modules
+            - /app/.pnpm-store
+        environment:
+            NODE_ENV: development
+        networks:
+            - app_network
+    postgres:
+        container_name: postgres_database
+        image: postgres
+        restart: always
+        environment:
+            POSTGRES_USER: ${POSTGRES_DATABASE_USERNAME}
+            POSTGRES_PASSWORD: ${POSTGRES_DATABASE_PASSWORD}
+            POSTGRES_DB: ${POSTGRES_DATABASE_DBNAME}
+        ports:
+            - 5432:${POSTGRES_DATABASE_PORT}
+        volumes:
+            - .:/usr/database/postgres
+        networks:
+            - app_network
+    redis:
+        container_name: redis_cache
+        image: redis
+        ports:
+            - 6379:${REDIS_PORT}
+        volumes:
+            - .:/usr/cache/redis
+        networks:
+            - app_network
+networks:
+    app_network:
+        driver: bridge
+volumes:
+    postgres_data:

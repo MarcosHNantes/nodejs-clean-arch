@@ -1,0 +1,9 @@
+#packages
+node_modules
+.pnpm-store
+
+#environment
+.env
+
+#build
+dist
